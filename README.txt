@@ -3,7 +3,7 @@ NucDynamics
 
 update log:
 original code with updates:
-<nucdynamics.py>: updated chromosome sorting for output files.
+<nucdynamics.py>: updated chromosome name read-in.
 
 
 NucDynamics is a Python/Cython program for the calculation of genome structures
