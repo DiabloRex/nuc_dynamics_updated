@@ -100,7 +100,7 @@ def load_ncc_file(file_path):
     
   for line in file_obj:
     chr_a, f_start_a, f_end_a, start_a, end_a, strand_a, chr_b, f_start_b, f_end_b, start_b, end_b, strand_b, ambig_group, pair_id, swap_pair = line.split()
-    ### for chromosome with name including paths
+    ### for chromosome with name including paths, added by DiabloRex
     chr_a = chr_a[chr_a.rfind("chr"):]
     chr_b = chr_a[chr_a.rfind("chr"):]
     if strand_a == '+':
