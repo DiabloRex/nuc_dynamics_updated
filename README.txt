@@ -1,6 +1,11 @@
 NucDynamics
 -----------
 
+update log:
+original code with updates:
+<nucdynamics.py>: updated chromosome sorting for output files.
+
+
 NucDynamics is a Python/Cython program for the calculation of genome structures
 from single-cell Hi-C chromosome contact data using a simulated annealing
 particle dynamics protocol. This software takes NCC format contact data (as
