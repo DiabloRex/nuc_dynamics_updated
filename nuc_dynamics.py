@@ -100,9 +100,11 @@ def load_ncc_file(file_path):
     
   for line in file_obj:
     chr_a, f_start_a, f_end_a, start_a, end_a, strand_a, chr_b, f_start_b, f_end_b, start_b, end_b, strand_b, ambig_group, pair_id, swap_pair = line.split()
-    ### for chromosome with name including paths, added by DiabloRex
-    chr_a = chr_a[chr_a.rfind("chr"):]
-    chr_b = chr_a[chr_a.rfind("chr"):]
+    
+    ## added by DiabloRex
+    chr_a = chr_a[chr_a.rfind("/") + 1:]
+    chr_b = chr_b[chr_b.rfind("/") + 1:]
+
     if strand_a == '+':
       pos_a = int(f_start_a)
     else:
@@ -233,6 +235,12 @@ def export_pdb_coords(file_path, coords_dict, seq_pos_dict, particle_size, scale
   write(line_format % 'REMARK 210 Residue code indicates chromosome')
   write(line_format % 'REMARK 210 Residue number represents which sequence Mb the atom is in')
   write(line_format % 'REMARK 210 Chain letter is different every chromosome, where Chr1=a, Chr2=b etc.')
+
+  for k, chromo in enumerate(sort_chromos):
+      chain_code = chr(ord('a')+k)
+      line = 'REMARK 210 chromosome index, where %s -> %s' % (chromo, chain_code)
+      write(line_format % line)
+
   
   if extended:
     file_obj.write(line_format % 'REMARK 210 Extended PDB format with particle seq. pos. in last column')
@@ -252,7 +260,8 @@ def export_pdb_coords(file_path, coords_dict, seq_pos_dict, particle_size, scale
     for k, chromo in enumerate(sort_chromos):
       chain_code = chr(ord('a')+k)            
       
-      tlc = chromo
+      ## changed by DiabloRex, to view chr number in pdb file
+      tlc = chromo.replace("chr","")
       while len(tlc) < 2:
         tlc = '_' + tlc
       
